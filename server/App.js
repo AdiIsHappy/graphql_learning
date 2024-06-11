@@ -1,17 +1,13 @@
 const express = require("express");
 const { graphqlHTTP } = require("express-graphql");
 const schema = require("./schema/schema");
-const mongooes = require("mongoose");
-
+const mongoose = require('mongoose');
+const db = require('./db');
 const app = express();
 
-mongooes.connect(
-  "mongodb+srv://ad2004sahu:vSDg8Abd3TFmYruR@clust.mihfrgi.mongodb.net/Clust"
-);
-mongooes.connection.once("open", () => {
-  console.log("Connected to database");
-});
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(
   "/graphql",
   graphqlHTTP({
